@@ -15,7 +15,7 @@ jobs:
     #nome do job
     e2e-tests:
         # maquina onde o job vai rodar
-        runs-on: ubuntu-latest
+        runs-on: windows-latest
 
         # passos do job
         steps:
@@ -43,9 +43,14 @@ jobs:
             - name: Executando testes e2e
               run: yarn run e2e
             
-            # executar o README como artefato
-            - name: Salvar README como artefato
+            # Criar uma pasta de logs
+            - name: Criar pasta de logs
+              run: |
+                mkdir logs
+                echo Pipeline executado com sucesso > logs\execucao.log
+
+            - name: Salvar logs como artefato
               uses: actions/upload-artifact@v4
               with:
-                name: documentacao
-                path: README.md
+                name: logs-pipeline
+                path: logs/
