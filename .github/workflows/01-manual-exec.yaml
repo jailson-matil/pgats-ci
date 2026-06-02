@@ -43,14 +43,8 @@ jobs:
             - name: Executando testes e2e
               run: yarn run e2e
 
-            - name: Converter para PDF
-              uses: BaileyJM02/markdown-to-pdf@v1
-              with:
-                input_path: README.md
-                output_dir: pdf
-
-            - name: Publicar PDF
+            - name: Salvar README como artefato
               uses: actions/upload-artifact@v4
               with:
-                name: relatorio-pdf
-                path: pdf
+                name: documentacao
+                path: README.md
