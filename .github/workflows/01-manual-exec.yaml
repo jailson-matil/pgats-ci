@@ -22,7 +22,7 @@ jobs:
             # clone do projeto
             - uses: actions/checkout@v4
 
-            # instalção do node
+            # instalação do node
             - uses: actions/setup-node@v4
               with:
                   node-version: 24.x
@@ -42,7 +42,8 @@ jobs:
             # executar os testes e2e
             - name: Executando testes e2e
               run: yarn run e2e
-
+            
+            # executar o README como artefato
             - name: Salvar README como artefato
               uses: actions/upload-artifact@v4
               with:
