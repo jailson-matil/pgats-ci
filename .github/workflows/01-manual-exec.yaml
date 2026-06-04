@@ -43,14 +43,3 @@ jobs:
             - name: Executando testes e2e
               run: yarn run e2e
             
-            # Criar uma pasta de logs
-            - name: Criar pasta de logs
-              run: |
-                mkdir logs
-                echo Pipeline executado com sucesso > logs\execucao.log
-
-            - name: Salvar logs como artefato
-              uses: actions/upload-artifact@v4
-              with:
-                name: logs-pipeline
-                path: logs/
