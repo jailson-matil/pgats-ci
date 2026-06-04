@@ -43,3 +43,19 @@ jobs:
             - name: Executando testes e2e
               run: yarn run e2e
             
+            - name: Compactar relatório
+              if: always()
+              run: zip -r artifacts.zip playwright-report test-results
+
+            - name: Enviar e-mail
+              if: always()
+              uses: cinotify/github-action@main
+              with:
+                to: 'teste.pipeline@uorak.com'
+                subject: 'Resultado da Pipeline'
+                body: |
+                  Pipeline executada.
+                  Repositório: ${{ github.repository }}
+                  Branch: ${{ github.ref_name }}
+                  Status: ${{ job.status }}
+                  attachment: 'artifacts.zip'
